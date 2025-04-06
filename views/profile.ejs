@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Результати аналiзiв</title>
+    <meta name="viewport" content="width=device-width">
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        .page__title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1e3a8a;
+        }
+
+        /* Top-right link */
+        .top-right-link {
+            text-align: right;
+            margin-bottom: 12px;
+        }
+
+        .top-right-link a {
+            font-size: 12px;
+            color: #2563eb;
+            text-decoration: none;
+            padding: 6px 10px;
+            display: inline-block;
+        }
+
+        .top-right-link a:hover {
+            text-decoration: underline;
+        }
+
+        .menu-block-wrapper {
+            background-color: #1e3a8a;
+            padding: 8px 0;
+        }
+
+        .menu {
+            list-style: none;
+            margin: 0;
+            padding: 0 16px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .menu__item {
+            margin: 0;
+        }
+
+        .menu__link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .menu__link.active-trail,
+        .menu__link:hover {
+            background-color: #3749a0;
+        }
+
+        .results-table table,
+        .butify-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            background-color: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .results-table caption,
+        .butify-table caption {
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px;
+            text-align: left;
+            background-color: #f3f4f6;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .results-table th,
+        .butify-table th {
+            background-color: #f3f4f6;
+            text-align: left;
+            padding: 10px 14px;
+            font-weight: 600;
+            font-size: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .results-table td,
+        .butify-table td {
+            padding: 10px 14px;
+            font-size: 12px;
+            vertical-align: top;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .response {
+            background-color: #f0f4ff;
+        }
+
+        .response-services {
+            background-color: #f9fafb;
+        }
+
+        .response-state-complete {
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+        .results-table-download-all-td {
+            text-align: center;
+            padding: 12px;
+            background-color: #f9fafb;
+        }
+
+        .results-download-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 6px 8px;
+            background-color: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: background 0.2s ease;
+        }
+
+        .results-download-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .header-wrapper {
+            background-color: #1e3a8a;
+            padding: 16px 0;
+            text-align: center
+        }
+
+        .logo-wrapper {
+            display: inline-block;
+        }
+
+        .logo-link {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+
+    </style>
+<body>
+<div id="page" class="page">
+    <div class="region region-navigation">
+        <div class="block block-menu-block main-menu">
+            <div class="menu-block-wrapper menu-name-main-menu">
+                <div class="container">
+                    <ul class="menu">
+                        <div class="logo-wrapper">
+                            <span class="logo-link">AI Clinic</span>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main">
+        <div id="block-system-main" class="container">
+            <div class="row clearfix">
+                <main id="content">
+                    <h1 class="page__title">Результати аналiзiв</h1>
+                    <div class="region region-content-top">
+                        <div class="block block-testlab-results first last odd"
+                             id="block-testlab-results-results-top-right-link">
+                            <div class="top-right-link"><a href="#" class="check-other-results" title="Other results">На
+                                    сторiнку логiну</a></div>
+                        </div>
+                    </div>
+                    <div class="results-table">
+                        <table class="info-table">
+
+                        </table>
+                    </div>
+                    <div class="request-responses-list-wrapper desktop">
+                        <table class="butify-table" name="resultsTable">
+                            <caption>Бланки результатiв</caption>
+                            <thead>
+                            <tr>
+                                <th class="results-table-td-2">Бланк результатiв</th>
+                                <th class="results-table-td-3">Матерiал</th>
+                                <th class="results-table-td-4">Cтан</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="response has-services" style="border-bottom: 3px solid white !important">
+                                <td class="response-data expander">ПЦР дослiд на SARS-CoV-2 (COVID-19) (Ж019)</td>
+                                <td class="response-data">Мазок з ротоглотки/носоглотки</td>
+                                <td class="response-data response-state response-state-complete active">
+                                    <div class="sent-state sent-disallow-pending" title="pending">Готовий</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="results-table-download-all-td">
+                                    <a href="#" title="Скачати документ"
+                                       class="results-download-btn form-submit dow download-file"> Завантажити бланк
+                                        результатiв</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    const main = async () => {
+        const backendUrl = '<%- url %>'
+
+        window.downloadFile = function (sUrl) {
+            if (/(iP)/g.test(navigator.userAgent)) {
+                alert('Your device does not support files downloading. Please try again in desktop browser.');
+                return false;
+            }
+
+            if (window.downloadFile.isChrome || window.downloadFile.isSafari) {
+                var link = document.createElement('a');
+                link.href = sUrl;
+
+                if (link.download !== undefined) {
+                    var fileName = sUrl.substring(sUrl.lastIndexOf('/') + 1, sUrl.length);
+                    link.download = fileName;
+                }
+
+                if (document.createEvent) {
+                    var e = document.createEvent('MouseEvents');
+                    e.initEvent('click', true, true);
+                    link.dispatchEvent(e);
+                    return true;
+                }
+            }
+
+            if (sUrl.indexOf('?') === -1) {
+                sUrl += '?download';
+            }
+
+            window.open(sUrl, '_self');
+            return true;
+        }
+
+        window.downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+        window.downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
+
+        const addTimeToDate = (date, time, addingTime) => {
+            if (!date || !time || !addingTime) return ''
+            const parsedDate = date.split(".")
+            const jsDate = parsedDate[1] + "." + parsedDate[0] + "." + parsedDate[2]
+            const unixDate = Date.parse(jsDate) + parseTime(time) + parseTime(addingTime)
+            const jsFullDate = new Date(unixDate)
+
+            let year = jsFullDate.getFullYear()
+
+            let month = (1 + jsFullDate.getMonth()).toString()
+            month = month.length > 1 ? month : '0' + month;
+
+            let day = (1 + jsFullDate.getDate()).toString()
+            day = day.length > 1 ? day : '0' + day;
+
+            let hours = jsFullDate.getHours().toString()
+            hours = hours.length > 1 ? hours : '0' + hours;
+
+            let minutes = jsFullDate.getMinutes().toString()
+            minutes = minutes.length > 1 ? minutes : '0' + minutes;
+
+            let seconds = jsFullDate.getSeconds().toString()
+            seconds = seconds.length > 1 ? seconds : '0' + seconds;
+
+            return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`
+        }
+
+        const parseTime = (time) => {
+            const parsedTime = time.split(":")
+            return Number.parseInt(parsedTime[0]) * 3600 * 1000 + Number.parseInt(parsedTime[1]) * 60 * 1000 + Number.parseInt(parsedTime[2]) * 1000
+        }
+
+        const logoutBtn = document.querySelector('.check-other-results')
+        logoutBtn.addEventListener("click", () => {
+            localStorage.setItem("login", '')
+            localStorage.setItem("password", '')
+            window.location.href = backendUrl + "login"
+        })
+
+
+        if (localStorage.getItem('login') && localStorage.getItem('password')) {
+            const downloadFileBtns = document.querySelectorAll(".download-file")
+            for (const btn of downloadFileBtns) {
+                btn.addEventListener("click", (e) => {
+                    e.preventDefault()
+                    downloadFile(backendUrl + `profile/download/${localStorage.getItem('login')}/${localStorage.getItem("password")}`)
+                })
+            }
+
+            const res = await fetch(backendUrl + "login", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({
+                    login: localStorage.getItem('login'),
+                    password: localStorage.getItem('password')
+                })
+            })
+                .then(res => res.json())
+
+            console.log(res)
+            const table = document.querySelector(".results-table table")
+            table.innerHTML = ''
+            const caption = document.createElement("caption")
+            caption.innerHTML = res.fullName
+            table.appendChild(caption)
+
+            const myDate = new Date()
+
+            const tbody = document.createElement("tbody")
+            const columns = [
+                {title: '№ заявки', name: "sampleNumber"},
+                {
+                    title: 'Лабораторiя та замовник',
+                    default: '"ООО "AIClinic" (Ж019, И019-1, И019-2, ДП019)'
+                },
+                {title: 'Дата народження', name: "birthDate"},
+                {
+                    title: 'Дата замовлення',
+                    default: (res.registrationDate ?? '') + " " + (res.registrationTime ?? '')
+                },
+                {
+                    title: 'Дата взяття',
+                    default: (res.registrationDate ?? '') + " " + (res.registrationTime ?? '')
+                },
+                {
+                    title: 'Дата отримання',
+                    default: addTimeToDate(res.registrationDate, res.registrationTime, "04:00:00")
+                },
+                // {
+                //     title: 'Плануєма дата',
+                //     default: addTimeToDate(res.registrationDate, res.registrationTime, "24:00:00")
+                // },
+                {
+                    title: 'Дата виконання',
+                    default: (res.completionDate ?? '') + " " + (res.completionTime ?? '')
+                },
+                {title: "Телефон", default: "(не вказан)"},
+                {title: "Email", default: "(не вказан)"},
+                {title: "Повiдомлення", default: "(нема)"},
+                {title: "Напрямок", default: "Нема"}
+            ]
+
+            for (const column of columns) {
+                const tr = document.createElement("tr")
+                const td1 = document.createElement("td")
+                td1.innerHTML = column.title + ":"
+                const td2 = document.createElement("td")
+
+                let columnValue = res[column.name] ?? column.default ?? ''
+
+                columnValue = column.filter ? column.filter(columnValue) : columnValue
+
+                td2.innerHTML = columnValue
+
+                tr.appendChild(td1)
+                tr.appendChild(td2)
+                table.appendChild(tr)
+            }
+
+        } else {
+            window.location.href = backendUrl + "login"
+        }
+    }
+    main()
+</script>
+</body>
+</html>

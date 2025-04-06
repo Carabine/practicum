@@ -1,0 +1,1 @@
+export type FORMAT_TYPE = "DATE" | "TIME" | "UPPER_CASE" | "AGE" | "RESEARCH_NUMBER"

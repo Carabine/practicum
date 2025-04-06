@@ -1,0 +1,156 @@
+{
+  "text": {
+    "en": [
+      {
+        "name": "ПIБ",
+        "columnName": "fullName",
+        "x": 46,
+        "y": 760,
+        "size": 8.5,
+        "font": "bold",
+        "formatType": "UPPER_CASE"
+      },
+      {
+        "name": "Дата нарождення",
+        "columnName": "birthDate",
+        "x": 56,
+        "y": 748.5,
+        "size": 8.5,
+        "font": "bold",
+        "formatType": "DATE"
+      },
+      {
+        "name": "Вiк",
+        "columnName": "age",
+        "x": 95,
+        "y": 749,
+        "size": 8.5,
+        "font": "bold",
+        "formatType": "AGE"
+      },
+      {
+        "name": "№ проби",
+        "columnName": "sampleNumber",
+        "x": 383,
+        "y": 739,
+        "size": 8.5,
+        "font": "bold"
+      },
+      null,
+      null,
+      {
+        "name": "Стать",
+        "columnName": "gender",
+        "x": 137,
+        "y": 748.5,
+        "size": 8.5,
+        "font": "bold"
+      },
+      {
+        "name": "Дата взяття",
+        "columnName": "takingDate",
+        "x": 83,
+        "y": 738,
+        "size": 8.5,
+        "font": "bold",
+        "formatType": "DATE"
+      },
+      {
+        "name": "Дата реєстрацiї",
+        "columnName": "registrationDate",
+        "x": 122,
+        "y": 727,
+        "size": 8.5,
+        "font": "bold",
+        "formatType": "DATE"
+      },
+      {
+        "name": "Дата виконання",
+        "columnName": "completionDate",
+        "x": 229,
+        "y": 114,
+        "size": 8.5,
+        "font": "bold",
+        "formatType": "DATE"
+      },
+      {
+        "name": "Дата друку",
+        "columnName": "printoutDate",
+        "x": 138,
+        "y": 115,
+        "size": 8.5,
+        "font": "bolder",
+        "color": {
+          "type": "RGB",
+          "red": 0.2784313725490196,
+          "green": 0.054901960784313725,
+          "blue": 0.7254901960784313
+        },
+        "formatType": "DATE"
+      },
+      {
+        "name": "Час друку",
+        "columnName": "printoutTime",
+        "x": 181,
+        "y": 115,
+        "size": 8.5,
+        "font": "bolder",
+        "color": {
+          "type": "RGB",
+          "red": 0.2784313725490196,
+          "green": 0.054901960784313725,
+          "blue": 0.7254901960784313
+        },
+        "formatType": "TIME"
+      },
+      {
+        "name": "Заклад",
+        "columnName": "institution",
+        "x": 355,
+        "y": 760,
+        "size": 8.5,
+        "font": "bold"
+      },
+      {
+        "name": "Результат",
+        "columnName": "result",
+        "x": 282,
+        "y": 658.75,
+        "size": 8.5,
+        "font": "regular"
+      },
+      {
+        "name": "Час реєстрацiї",
+        "columnName": "registrationTime",
+        "dontPrint": true,
+        "formatType": "TIME"
+      },
+      {
+        "name": "Час виконання",
+        "columnName": "completionTime",
+        "dontPrint": true,
+        "formatType": "TIME"
+      },
+      {
+        "name": "Пошта",
+        "columnName": "email",
+        "dontPrint": true
+      }
+    ]
+  },
+  "linkedText": {
+    "en": [
+      {
+        "name": "Зовнiшнiй номер",
+        "x": 360,
+        "y": 750,
+        "size": 8.5,
+        "font": "bold",
+        "linkTo": 3
+      }
+    ]
+  },
+  "staticText": {
+    "en": []
+  }
+}

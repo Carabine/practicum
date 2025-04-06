@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Результати аналiзiв</title>
+    <meta name="viewport" content="width=device-width">
+    <style>
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding: 12px;
+        }
+
+        .page__title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1e3a8a;
+        }
+
+        .menu-block-wrapper {
+            background-color: #1e3a8a;
+            padding: 8px 0;
+        }
+
+        .menu {
+            list-style: none;
+            margin: 0;
+            padding: 0 16px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .menu__item {
+            margin: 0;
+        }
+
+        .menu__link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .menu__link.active-trail,
+        .menu__link:hover {
+            background-color: #3749a0;
+        }
+
+        /* Main Content */
+        #content {
+            margin-bottom: 16px;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .form-wrapper {
+            padding: 12px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 12px;
+        }
+
+        .form-item label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .form-item input {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            background-color: #fafafa;
+        }
+
+        .form-item input:focus {
+            border-color: #2563eb;
+        }
+
+        .form-required {
+            color: red;
+        }
+
+        .form-submit {
+            background-color: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .form-submit:hover {
+            background-color: #1d4ed8;
+        }
+
+        #snackbar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2563eb;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .header-wrapper {
+            background-color: #1e3a8a;
+            padding: 16px 0;
+            text-align: center;
+        }
+
+        .logo-wrapper {
+            display: inline-block;
+        }
+
+        .logo-link {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .form-submit {
+            margin-top: 6px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="snackbar"></div>
+<div id="page" class="page">
+    <div class="menu-block-wrapper menu-name-main-menu">
+        <div class="container">
+            <ul class="menu">
+                <div class="logo-wrapper">
+                    <span class="logo-link">AI Clinic</span>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="container">
+            <main id="content" class="col-sm-9">
+                <h1 class="page__title">Результати аналiзiв</h1>
+            </main>
+            <div class="form-wrapper col-sm-3">
+                <div>
+                    <form class="cabinet-login-form" action="#" method="post"
+                          id="results-login-form" accept-charset="UTF-8">
+                        <div>
+                            <div class="form-item form-type-textfield form-item-login">
+                                <label for="edit-login">Номер заявки <span class="form-required"
+                                                                           title="Це поле обов'язкове для заповнення.">*</span></label>
+                                <input type="text" id="edit-login" name="login" value="" size="16" maxlength="128"
+                                       class="form-text required input-login">
+                            </div>
+                            <div class="form-item form-type-password form-item-password">
+                                <label for="edit-password">Пароль <span class="form-required"
+                                                                        title="Це поле обов'язкове для заповнення.">*</span></label>
+                                <input type="password" id="edit-password" name="password" size="16" maxlength="128"
+                                       class="form-text required input-password">
+                            </div>
+                            <input type="hidden" name="form_build_id"
+                                   value="form-JeyqQbALHuvtCXFFo38pp4pjBM6UeGzAZTOxr-aCNk4">
+                            <input type="hidden" name="form_id" value="results_login_form">
+                            <div id="submit-btn"><input type="submit" id="edit-submit" name="op"
+                                                                               value="Показати результати"
+                                                                               class="form-submit"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <div class="container">
+    </div>
+</footer>
+
+<script type="text/javascript">
+    function showSnackbar(message, type = 'error') {
+        var x = document.getElementById("snackbar");
+
+        x.innerHTML = message
+
+        if (type === 'error') {
+            x.style.backgroundColor = 'red'
+        } else if (type === 'success') {
+            x.style.backgroundColor = 'green'
+        }
+
+        x.className = "show";
+
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
+
+    const main = () => {
+        const backendUrl = '<%- url %>'
+
+        const urlLogin = window.location.pathname.split('/')[2]
+        const urlPassword = window.location.pathname.split('/')[3]
+        const loginInput = document.querySelector(".input-login")
+        const passwordInput = document.querySelector(".input-password")
+        if (urlLogin) {
+            loginInput.value = urlLogin
+        }
+        if (urlPassword) {
+            passwordInput.value = urlPassword
+
+        }
+        const loginForm = document.querySelector(".cabinet-login-form")
+        loginForm.addEventListener("submit", async e => {
+            e.preventDefault()
+            const res = await fetch(backendUrl + "login", {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST", body: JSON.stringify({login: loginInput.value, password: passwordInput.value})
+                }
+            )
+
+            if (res.status >= 200 && res.status <= 299) {
+                localStorage.setItem("login", loginInput.value)
+                localStorage.setItem("password", passwordInput.value)
+                window.location.href = backendUrl + "profile"
+
+            } else {
+                showSnackbar("Номер заявки або пароль невiрнi")
+            }
+        })
+    }
+    document.addEventListener("DOMContentLoaded", main);
+</script>
+
+
+</body>
+</html>

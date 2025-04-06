@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Адмiн-панель</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    body {
+      background: #F3F3F3;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      background-color: #EEE;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    main .list {
+      width: 100%;
+      max-width: 768px;
+      background-color: #FFF;
+      border: 1px solid #CCC;
+      margin-top: 25px;
+    }
+
+    main .list .item {
+      padding: 15px;
+      border-bottom: 1px solid #CCC;
+    }
+    main .list .item:last-of-type {
+      border-bottom: none;
+    }
+
+
+    .pagenumbers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .pagenumbers button {
+      width: 50px;
+      height: 50px;
+
+      appearance: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+
+      background-color: #44AAEE;
+
+      margin: 5px;
+      transition: 0.4s;
+
+      color: #FFF;
+      font-size: 18px;
+      text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .pagenumbers button:hover {
+      background-color: #44EEAA;
+    }
+
+    .pagenumbers button.active {
+      background-color: #44EEAA;
+      box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+    }
+    button{
+        margin-left: 10px;
+        padding: 6px 12px;
+        background-color: #44AAEE;
+        border: 0;
+        color: white;
+        text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:focus{
+      outline: none;
+    }
+    button.active {
+      background-color: #44EEAA;
+    }
+    button:hover {
+      background-color: #44EEAA;
+    }
+
+    .choose-all {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      margin-top: 10px;
+    }
+    .choose-all span {
+      font-size: 25px;
+      margin-right: 10px;
+    }
+    input[type="checkbox"] {
+        display:inline-block;
+        width: 25px;
+        height: 25px;
+        margin:-1px 4px 0 0;
+        vertical-align:middle;
+        cursor:pointer;
+    }
+    .list .item {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+    }
+    .list input[type="checkbox"] {
+      position: absolute;
+      right: -40px;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+    }
+
+    .nav a {
+        margin-left: 10px;
+        padding: 6px 12px;
+        background-color: #44AAEE;
+        border: 0;
+        color: white;
+        text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        text-decoration: none;
+        margin: 0 15px;
+    }
+    .nav a:focus{
+      outline: none;
+    }
+    .nav a.active {
+      background-color: #44EEAA;
+    }
+    .nav a:hover {
+      background-color: #44EEAA;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="nav">
+      <a href="<%- url %>admin/upload">Сгенерувати</a>
+      <a href="<%- url %>admin/download">Завантажити</a>
+      <a href="<%- url %>admin/send">Вiдправити</a>
+      <a href="<%- url %>admin/delete">Видалити</a>
+  </div>
+	<header>
+		<h1>Видалити документи</h1>
+	</header>
+	<main>
+    <div class="list-controls">
+      <div class="choose-all">
+          <span>Обрати всi</span>
+          <input type="checkbox">
+          <button>Видалити обранi</button>
+      </div>
+    </div>
+		<div class="list" id="list"></div>
+		<div class="pagenumbers" id="pagination"></div>
+	</main>
+	<script>
+    const backendUrl = '<%- url %>'
+
+    const prettyDate = (t) => {
+        const date = ('0' + t.getDate()).slice(-2);
+        const month = ('0' + (t.getMonth() + 1)).slice(-2);
+        const year = t.getFullYear();
+        const hours = ('0' + t.getHours()).slice(-2);
+        const minutes = ('0' + t.getMinutes()).slice(-2);
+        const seconds = ('0' + t.getSeconds()).slice(-2);
+        const time = `${date}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
+        return time
+    }
+
+    const navBtns = document.querySelectorAll(".nav button")
+
+    for(const btn of navBtns) {
+      const link = btn.querySelector('a')
+      if(link.getAttribute("href") == window.location.href) {
+        btn.classList.add('active')
+      }
+    }
+
+    fetch(backendUrl + 'admin/documents/count')
+      .then(async res => {
+        let items_count = await res.json();
+
+        const getItems = async (offset, limit) => {
+          var url = new URL(backendUrl + "admin/documents/")
+          const params = {offset, limit}
+          Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+          return await fetch(url).then(async res => await res.json())
+        }
+
+        const chooseAllInput = document.querySelector('.choose-all input')
+        chooseAllInput.addEventListener('change', (e) => {
+          const listInputs = document.querySelectorAll('.list input')
+          for(let el of listInputs) el.checked = chooseAllInput.checked
+        })
+        const deleteBtn = document.querySelector('.choose-all button')
+
+        deleteBtn.addEventListener('click', async (e) => {
+          const listItems = document.querySelectorAll('.list .item')
+
+          const params = {}
+          for(let i = 0; i < listItems.length; i++)  {
+            if(listItems[i].querySelector("input").checked) {
+              console.log(listItems[i].getAttribute("data_id"))
+              params[i] = listItems[i].getAttribute("data_id")
+
+            }
+          }
+
+          var url = new URL(backendUrl + "admin/documents/")
+          Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+          await fetch(url, {method: "DELETE"})
+          DisplayList(list_element, rows, current_page)
+          document.querySelector('.choose-all input').checked = false
+          items_count = await fetch(backendUrl + 'admin/documents/count').then(async res => await res.json())
+          SetupPagination(pagination_element, rows);
+        })
+
+
+        const list_element = document.getElementById('list');
+        const pagination_element = document.getElementById('pagination');
+
+        let current_page = 1;
+        const rows = 10;
+
+        async function DisplayList (wrapper, rows_per_page, page) {
+          wrapper.innerHTML = "";
+          page--;
+
+          let start = rows_per_page * page;
+          let end = start + rows_per_page;
+          pagination_element.style.display = 'none'
+          let paginatedItems = await getItems(start, rows_per_page)
+          pagination_element.style.display = 'flex'
+
+
+          for (let i = 0; i < paginatedItems.length; i++) {
+            let item = paginatedItems[i];
+
+            let item_element = document.createElement('div');
+            const itemName = document.createElement('div');
+            const itemDate = document.createElement('div')
+
+            item_element.classList.add('item');
+            itemName.innerText = item.fullName;
+            itemDate.innerText = prettyDate(new Date(item.created));
+            item_element.append(itemName)
+            item_element.append(itemDate)
+
+            item_element.setAttribute("data_id", item.id)
+            let input = document.createElement('input');
+            input.type = 'checkbox'
+            item_element.append(input)
+
+            wrapper.appendChild(item_element);
+          }
+        }
+
+        function SetupPagination (wrapper, rows_per_page) {
+          wrapper.innerHTML = "";
+
+          let page_count = Math.ceil(items_count / rows_per_page);
+          for (let i = 1; i < page_count + 1; i++) {
+            let btn = PaginationButton(i);
+            wrapper.appendChild(btn);
+          }
+        }
+
+        function PaginationButton (page) {
+          let button = document.createElement('button');
+          button.innerText = page;
+
+          if (current_page == page) button.classList.add('active');
+
+          button.addEventListener('click', function () {
+            current_page = page;
+            DisplayList(list_element, rows, current_page);
+
+            let current_btn = document.querySelector('.pagenumbers button.active');
+            current_btn.classList.remove('active');
+
+            button.classList.add('active');
+          });
+
+          return button;
+        }
+
+        DisplayList(list_element, rows, current_page);
+        SetupPagination(pagination_element, rows);
+      })
+  </script>
+</body>
+</html>
