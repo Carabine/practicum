@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 import { ConfigService } from '../config/config.service';
-import { HtmlMailStrategy } from './html-mail.strategy';
 import { MailStrategy } from './mail-strategy.interface';
 import { TextMailStrategy } from './text-mail.strategy';
 
@@ -9,7 +8,6 @@ import { TextMailStrategy } from './text-mail.strategy';
 export class MailerService {
   private mailStrategy: MailStrategy;
   private transporter: nodemailer.Transporter;
-  private readonly htmlMailStrategy: HtmlMailStrategy;
   private readonly textMailStrategy: TextMailStrategy;
 
   constructor(

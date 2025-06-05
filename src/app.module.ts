@@ -1,4 +1,4 @@
-import { Logger, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 
 import { ConfigModule } from './config/config.module';
 import { UtilsModule } from './utils/utils.module';
@@ -8,9 +8,7 @@ import { PdfModule } from './pdf/pdf.module';
 import { LoginModule } from './api/login/login.module';
 import { ProfileModule } from './api/profile/profile.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LoggerModule } from './logger/logger.module';
 import { MailerModule } from './mailer/mailer.module';
-import { WinstonLoggerService } from './logger/winston-logger.service';
 
 @Module({
   imports: [
@@ -32,18 +30,11 @@ import { WinstonLoggerService } from './logger/winston-logger.service';
     LoginModule,
     ProfileModule,
     MailerModule,
-    LoggerModule
   ],
   controllers: [],
-  providers: [WinstonLoggerService],
+  providers: [],
 })
 export class AppModule {
-  private readonly logger = new Logger(AppModule.name);
 
-  constructor(private readonly winstonLogger: WinstonLoggerService) {}
-
-  onModuleInit() {
-    this.logger.log('Модуль ініціалізовано');
-    this.winstonLogger.log('Модуль ініціалізовано та записано в файл');
-  }
+  constructor() {}
 }
